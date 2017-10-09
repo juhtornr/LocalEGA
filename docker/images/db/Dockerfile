@@ -1,4 +1,4 @@
-FROM postgres:latest
+FROM centos/postgresql-95-centos7 
 LABEL maintainer "Frédéric Haziza, NBIS"
 
 
