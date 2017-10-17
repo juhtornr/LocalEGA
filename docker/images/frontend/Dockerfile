@@ -1,4 +1,4 @@
-FROM juhtornr/ega:common
+FROM tornroos/ega:common
 
 COPY frontend.sh /usr/local/bin/frontend.sh
 
