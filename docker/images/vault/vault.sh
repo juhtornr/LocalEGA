@@ -2,7 +2,7 @@
 
 set -e
 
-pip3.6 install /root/ega
+pip3.6 install /root/ega/src
 
 echo "Waiting for Central Message Broker"
 until nc -4 --send-only cega_mq 5672 </dev/null &>/dev/null; do sleep 1; done

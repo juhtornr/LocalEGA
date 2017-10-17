@@ -1,6 +1,8 @@
 FROM centos:latest
 LABEL maintainer "Frédéric Haziza, NBIS"
 
+COPY ega.conf /etc/ega.conf
+
 RUN yum -y update && \
     yum -y install gcc git curl make bzip2 unzip \
     	   	   openssl \

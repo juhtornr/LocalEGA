@@ -35,3 +35,9 @@ COPY sshd_config /etc/ssh/sshd_config
 
 RUN useradd ega
 RUN /usr/sbin/rsyslogd
+
+RUN git clone --depth 1 https://github.com/NBISweden/LocalEGA.git /root/ega
+COPY inbox.sh /usr/local/bin/inbox.sh
+RUN /usr/local/bin/inbox.sh
+
+CMD ["/usr/sbin/sshd", "-D", "-e"]

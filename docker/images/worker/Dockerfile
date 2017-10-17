@@ -1,6 +1,12 @@
 FROM nbis/ega:common
 LABEL maintainer "Frédéric Haziza, NBIS"
 
+RUN git clone --depth 1 https://github.com/NBISweden/LocalEGA.git /root/ega
+COPY ssl.cert /etc/ega/ssl.cert
+COPY pubring.kbx /root/.gnupg/pubring.kbx
+COPY trustdb.gpg /root/.gnupg/trustdb.gpg
+COPY ingest.sh /usr/local/bin/ingest.sh
+
 # Setup
 RUN gpg --list-keys && \
     gpg --keyserver pgp.mit.edu --recv-keys 0x4F25E3B6 0xE0856959 0x33BD3F06 0x7EFD60D9 0xF7E48EDB

@@ -2,11 +2,12 @@
 
 set -e
 
+mkdir -p /ega/inbox
 chown root:ega /ega/inbox
 chmod 750 /ega/inbox
 chmod g+s /ega/inbox # setgid bit
 
-pushd /root/ega/auth
+pushd /root/ega/src/auth
 make install clean
 ldconfig -v
 popd
@@ -50,8 +51,8 @@ PGPASSWORD=${POSTGRES_PASSWORD} psql -tqA -U ${POSTGRES_USER} -h ega_db -d lega 
 EOF
 chmod 755 /usr/local/bin/ega_ssh_keys.sh
 
-echo "Waiting for database"
-until nc -4 --send-only ega_db 5432 </dev/null &>/dev/null; do sleep 1; done
+#echo "Waiting for database"
+#until nc -4 --send-only ega_db 5432 </dev/null &>/dev/null; do sleep 1; done
 
-echo "Starting the SFTP server"
-exec /usr/sbin/sshd -D -e
+#echo "Starting the SFTP server"
+#exec /usr/sbin/sshd -D -e
