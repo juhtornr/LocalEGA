@@ -17,10 +17,11 @@ RUN mkdir -p /var/run/sshd
 EXPOSE 22
 
 # Regenerate keys (no passphrase)
-RUN ssh-keygen -t rsa     -N '' -f /etc/ssh/ssh_host_rsa_key && \
-    ssh-keygen -t dsa     -N '' -f /etc/ssh/ssh_host_dsa_key && \
-    ssh-keygen -t ecdsa   -N '' -f /etc/ssh/ssh_host_ecdsa_key && \
-    ssh-keygen -t ed25519 -N '' -f /etc/ssh/ssh_host_ed25519_key 
+                                   /etc/ssh/ssh_host_rsa_key
+#RUN ssh-keygen -t rsa     -N '' -f /etc/ssh/ssh_host_rsa_key && \
+#    ssh-keygen -t dsa     -N '' -f /etc/ssh/ssh_host_dsa_key && \
+#    ssh-keygen -t ecdsa   -N '' -f /etc/ssh/ssh_host_ecdsa_key && \
+#    ssh-keygen -t ed25519 -N '' -f /etc/ssh/ssh_host_ed25519_key 
 
 ##################################
 COPY pam.ega /etc/pam.d/ega
@@ -40,4 +41,5 @@ RUN git clone --depth 1 https://github.com/NBISweden/LocalEGA.git /root/ega
 COPY inbox.sh /usr/local/bin/inbox.sh
 RUN /usr/local/bin/inbox.sh
 
+RUN /usr/bin/ssh-keygen -A
 CMD ["/usr/sbin/sshd", "-D", "-e"]
