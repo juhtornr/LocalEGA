@@ -17,7 +17,6 @@ RUN mkdir -p /var/run/sshd
 EXPOSE 22
 
 # Regenerate keys (no passphrase)
-                                   /etc/ssh/ssh_host_rsa_key
 #RUN ssh-keygen -t rsa     -N '' -f /etc/ssh/ssh_host_rsa_key && \
 #    ssh-keygen -t dsa     -N '' -f /etc/ssh/ssh_host_dsa_key && \
 #    ssh-keygen -t ecdsa   -N '' -f /etc/ssh/ssh_host_ecdsa_key && \
