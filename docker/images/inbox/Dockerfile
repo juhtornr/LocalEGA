@@ -14,7 +14,6 @@ COPY ega.ld.conf /etc/ld.so.conf.d/ega.conf
 
 ##################################
 RUN mkdir -p /var/run/sshd
-EXPOSE 22
 
 # Regenerate keys (no passphrase)
 #RUN ssh-keygen -t rsa     -N '' -f /etc/ssh/ssh_host_rsa_key && \
@@ -49,7 +48,6 @@ RUN adduser --system -s /bin/bash -u 1234321 -g 0 git # uid to replace later
 RUN chmod 775 /etc/ssh /home # keep writable for openshift user group (root)
 RUN chmod 660 /etc/ssh/sshd_config
 RUN chmod 664 /etc/passwd /etc/group # to help uid fix
-RUN ln -s /home/git /repos # nicer repo url
 
 EXPOSE 2022
 
@@ -61,6 +59,6 @@ CMD echo -e ",s/1234321/`id -u`/g\\012 w" | ed -s /etc/passwd && \
     touch /home/git/.ssh/authorized_keys && \
     chmod 700 /home/git/.ssh && \
     chmod 600 /home/git/.ssh/authorized_keys && \
-    mkdir /home/git/sample.git && \
     ssh-keygen -A && \
+    echo "Starting sshd..." && \
     exec /usr/sbin/sshd -D
