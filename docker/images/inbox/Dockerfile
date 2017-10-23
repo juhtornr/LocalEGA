@@ -6,7 +6,7 @@ RUN yum -y update && \
 		   openssh-server \
 		   nss-tools nc nmap tcpdump lsof strace \
 	       	   bash-completion bash-completion-extras \
-		   postgresql-devel pam-devel libcurl-devel json-c-devel
+		   postgresql-devel pam-devel libcurl-devel json-c-devel ed
 
 ##################################
 RUN mkdir -p /usr/local/lib/ega
