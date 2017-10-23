@@ -61,4 +61,4 @@ CMD echo -e ",s/1234321/`id -u`/g\\012 w" | ed -s /etc/passwd && \
     chmod 600 /home/git/.ssh/authorized_keys && \
     ssh-keygen -A && \
     echo "Starting sshd..." && \
-    exec /usr/sbin/sshd -D
+    exec /usr/sbin/sshd -D -e
