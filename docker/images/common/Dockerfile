@@ -1,7 +1,8 @@
 FROM centos:latest
 LABEL maintainer "Frédéric Haziza, NBIS"
 
-COPY ega.conf /etc/ega.conf
+CMD mkdir -p /etc/ega
+COPY ega.conf /etc/ega/conf.ini
 
 RUN yum -y update && \
     yum -y install gcc git curl make bzip2 unzip \
