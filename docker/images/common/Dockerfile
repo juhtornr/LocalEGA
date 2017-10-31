@@ -10,6 +10,8 @@ RUN yum -y update && \
 		   nss-tools nc nmap tcpdump lsof strace \
 	       	   bash-completion bash-completion-extras
 
+RUN [[ -e /lib64/libpython3.6m.so ]] || ln -s /lib64/libpython3.6m.so.1.0 /lib64/libpython3.6m.so
+
 ##################################
 # For Python 3.6
 ##################################

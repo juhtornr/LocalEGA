@@ -38,4 +38,5 @@ MATCH GROUP ega USER *,!ega
   AuthorizedKeysCommandUser ega
   AuthenticationMethods "publickey" "keyboard-interactive:pam"
   # -d (remote start directory relative user root)
-  ForceCommand internal-sftp -d /inbox
+  ForceCommand internal-sftp -d /inbox 
+  #internal-sftp -d /inbox

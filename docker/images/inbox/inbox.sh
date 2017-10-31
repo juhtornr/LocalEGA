@@ -3,16 +3,19 @@
 set -e
 
 mkdir -p /ega/inbox
-chown root:ega /ega/inbox
 chmod 750 /ega/inbox
+chown root:ega /ega/inbox
 chmod g+s /ega/inbox # setgid bit
 
+mkdir -p /ega/inbox/santa
+chown root:ega /ega/inbox/santa
+
 pushd /root/ega/src/auth
-make install clean
+make debug clean
 ldconfig -v
 popd
 
-EGA_DB_IP=$(getent hosts ega_db | awk '{ print $1 }')
+EGA_DB_IP=$(getent hosts db | awk '{ print $1 }')
 
 mkdir -p /etc/ega
 cat > /etc/ega/auth.conf <<EOF
@@ -21,10 +24,11 @@ debug = ok_why_not
 ##################
 # Databases
 ##################
-db_connection = host=${EGA_DB_IP} port=5432 dbname=lega user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} connect_timeout=1 sslmode=disable
+db_connection = host=ega-db port=5432 dbname=lega user=lega_user password=somesecretpassword connect_timeout=1 sslmode=disable
+#db_connection = host=${EGA_DB_IP} port=5432 dbname=lega user=lega password=somesecretpassword connect_timeout=1 sslmode=disable
 
 enable_rest = yes
-rest_endpoint = http://cega_users/user/%s
+rest_endpoint = http://cega_users:808/user/%s
 
 ##################
 # NSS Queries
@@ -47,7 +51,7 @@ eid=\${1%%@*} # strip what's after the @ symbol
 
 query="SELECT pubkey from users where elixir_id = '\${eid}' LIMIT 1"
 
-PGPASSWORD=${POSTGRES_PASSWORD} psql -tqA -U ${POSTGRES_USER} -h ega_db -d lega -c "\${query}"
+PGPASSWORD=somesecretpassword psql -tqA -U lega -h ega_db -d lega -c "\${query}"
 EOF
 chmod 755 /usr/local/bin/ega_ssh_keys.sh
 

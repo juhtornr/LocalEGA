@@ -60,7 +60,7 @@ def main():
     ssl_ctx = None
 
     # And ...... cue music!
-    web.run_app(server, host=host, port=80, shutdown_timeout=0, ssl_context=ssl_ctx, loop=loop)
+    web.run_app(server, host=host, port=8080, shutdown_timeout=0, ssl_context=ssl_ctx, loop=loop)
 
 if __name__ == '__main__':
     main()
