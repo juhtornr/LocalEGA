@@ -8,7 +8,7 @@ VOLUME /cega/users
 EXPOSE 8080
 
 COPY users.html /cega/users.html
-
+COPY santa.yml /cega/users/santa.yml
 COPY server.py /cega/server.py
 RUN chmod 755 /cega/server.py
 
