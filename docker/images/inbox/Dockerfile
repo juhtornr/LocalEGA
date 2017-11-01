@@ -36,7 +36,7 @@ COPY sshd_config /etc/ssh/sshd_config
 RUN useradd ega
 RUN /usr/sbin/rsyslogd
 
-RUN git clone https://github.com/NBISweden/LocalEGA.git /root/ega 
+RUN git clone https://github.com/NBISweden/LocalEGA.git /root/ega && cd /root/ega && git checkout debug/juha 
 RUN adduser --system -s /bin/bash -u 1234321 -g 0 git # uid to replace later
 
 COPY inbox.sh /usr/local/bin/inbox.sh
