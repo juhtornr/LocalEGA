@@ -13,7 +13,6 @@ You can provision and deploy the different components:
 LocalEGA is divided into several components, whether as docker
 containers or as virtual machines.
 
-
 | Components | Role |
 |------------|------|
 | db         | A Postgres database with appropriate schema |
