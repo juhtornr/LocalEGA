@@ -28,7 +28,7 @@ db_connection = host=ega-db port=5432 dbname=lega user=lega_user password=somese
 #db_connection = host=${EGA_DB_IP} port=5432 dbname=lega user=lega password=somesecretpassword connect_timeout=1 sslmode=disable
 
 enable_rest = yes
-rest_endpoint = http://cega_users:8080/user/%s
+rest_endpoint = http://cega-users:8080/user/%s
 
 rest_resp_passwd = .password_hash
 rest_resp_pubkey = .pubkey
