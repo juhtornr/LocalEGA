@@ -23,6 +23,7 @@ containers or as virtual machines.
 | vault      | Stores the files from the staging area to the vault. It includes a verification step afterwards. |
 | frontend   | Documentation for the users |
 
+
 The workflow is as follows and consists of two ordered parts.
 
 ### Handling users
